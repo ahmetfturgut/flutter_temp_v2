@@ -1,6 +1,6 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:common/src/custom_image/custom_mem_cahe.dart';
+import 'package:common/src/package/custom_image/custom_mem_cahe.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
