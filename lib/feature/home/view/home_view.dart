@@ -20,11 +20,15 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> with HomeViewMixin {
+  List<User> _users = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: (){
-        SuccessDialog.show(title: 'title', context: context);
+      floatingActionButton: FloatingActionButton(onPressed: () async {
+        _users = await loginService.users();
+        print(_users);
+        setState(() {});
       }),
       appBar: const _HomeAppBar(),
       body: Column(
@@ -44,6 +48,15 @@ class _HomeViewState extends State<HomeView> with HomeViewMixin {
             },
             child: const Text(LocaleKeys.general_button_save).tr(),
           ),
+          Expanded(
+              child: ListView.builder(
+                  itemCount: _users.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      title: Text(_users[index].userId.toString()),
+                      subtitle: Text(_users[index].body.toString()),
+                    );
+                  }))
         ],
       ),
     );
