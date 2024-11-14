@@ -19,6 +19,7 @@ final class LoginService extends AuthenticationOperation {
       parseModel: User(),
       method: RequestType.GET,
     );
+
     return response.data ?? [];
   }
 }
