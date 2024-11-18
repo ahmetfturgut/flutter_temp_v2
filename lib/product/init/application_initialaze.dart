@@ -1,14 +1,13 @@
 import 'dart:async';
 
+import 'package:architecture_template/product/init/config/app_environment.dart';
+import 'package:architecture_template/product/state/container/product_state_container.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_logger/easy_logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
 import 'package:logger/logger.dart';
-
-import '../state/container/product_state_container.dart';
-import 'config/app_environment.dart';
 
 @immutable
 
@@ -31,14 +30,12 @@ final class ApplicationInitialize {
     await EasyLocalization.ensureInitialized();
     EasyLocalization.logger.enableLevels = [LevelMessages.error];
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    // TODO: Splash
-    await DeviceUtility.instance.initPackageInfo();
+     await DeviceUtility.instance.initPackageInfo();
 
     FlutterError.onError = (details) {
       /// crashlytics log insert here
       /// custom service or custom logger insert here
-      /// Todo: add custom logger
-      Logger().e(details.exceptionAsString());
+       Logger().e(details.exceptionAsString());
     };
 
     _productEnvironmentWithContainer();
